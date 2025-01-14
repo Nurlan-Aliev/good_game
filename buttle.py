@@ -1,12 +1,13 @@
 from monsterts import Monsters
+from utils import show, hear
 
 
 def fight(hero, enemy: Monsters):
     while hero.health > 0:
-        print(health_bar(hero))
-        print(health_bar(enemy))
+        show(health_bar(hero))
+        show(health_bar(enemy))
         kick: str = (
-            input("how do you want to attack\n1. usual attack\n2. ultimate")
+            hear("how do you want to attack\n1. usual attack\n2. ultimate\n")
             .lower()
             .strip()
         )
@@ -15,11 +16,11 @@ def fight(hero, enemy: Monsters):
         else:
             hero.attack(enemy)
         if enemy.health <= 0:
-            print("u win")
+            show("u win")
             break
         enemy.attack(hero)
     else:
-        print('u lose')
+        show('u lose')
 
 
 def health_bar(person):

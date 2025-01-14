@@ -1,3 +1,6 @@
+from utils import show
+
+
 class Hero:
     def __init__(self, name):
         self.name = name
@@ -12,13 +15,13 @@ class Hero:
         self.level = 1
 
     def info(self):
-        print(f"Имя героя: {self.name}")
-        print(f"Здоровье: {self.health}")
-        print(f"Урон: {self.power}")
+        show(f"Имя героя: {self.name}")
+        show(f"Здоровье: {self.health}")
+        show(f"Урон: {self.power}")
         if self.mana:
-            print(f"Мана: {self.mana}")
+            show(f"Мана: {self.mana}")
         if self.stamina:
-            print(f"Выносливость: {self.stamina}")
+            show(f"Выносливость: {self.stamina}")
 
     def attack(self, target):
         if target.armor == "light":
@@ -42,10 +45,13 @@ class Samurai(Hero):
         self.armor = "light"
 
     def ultimate(self, target):
-        print('\nuuuaaaa\n')
-        target.health -= 50
-        self.stamina -= 50
 
+        if self.stamina > 30:
+            show('\nuuuaaaa\n')
+            target.health -= 20
+            self.stamina -= 60
+        else:
+            self.attack(target)
 
 class Mage(Hero):
     def __init__(self, name):

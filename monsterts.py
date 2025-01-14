@@ -1,5 +1,6 @@
 from heroes import Hero
 import random
+from utils import show
 
 
 class Monsters:
@@ -28,7 +29,7 @@ class Monsters:
 
     def ultimate(self, target: Hero):
         target.health -= 50
-        print("ULTIMATE")
+        show("ULTIMATE")
 
     def attack(self, target: Hero):
         if random.randint(1, 4) == 4:

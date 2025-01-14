@@ -1,15 +1,16 @@
 import heroes
+from utils import show, hear
 
 
 def beginning():
-    name = input("what is your name?\n-> ")
+    name = hear("what is your name? ")
     hero = (
-        input("what is your hero?\n1.mage\n2.samurai\n3.warrior\n-> ").lower().strip()
+        hear("what is your hero?\n1.mage\n2.samurai\n3.warrior ").lower().strip()
     )
     while hero not in ("mage", "1", "samurai", "2", "warrior", "3"):
-        print("you have to chose from the list")
+        show("you have to chose from the list")
         hero = (
-            input("what is your hero?\n1.mage\n2.samurai\n3.warrior\n-> ")
+            hear("what is your hero?\n1.mage\n2.samurai\n3.warrior ")
             .lower()
             .strip()
         )
