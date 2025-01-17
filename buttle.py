@@ -7,7 +7,7 @@ def fight(hero, enemy: Monsters):
         show(health_bar(hero))
         show(health_bar(enemy))
         kick: str = (
-            hear("how do you want to attack\n1. usual attack\n2. ultimate\n")
+            hear("how do you want to attack\n1. usual attack\n2. ultimate")
             .lower()
             .strip()
         )
@@ -16,11 +16,14 @@ def fight(hero, enemy: Monsters):
         else:
             hero.attack(enemy)
         if enemy.health <= 0:
+            hero.get_xp(enemy.xp)
+            hero.get_full()
             show("u win")
             break
         enemy.attack(hero)
     else:
-        show('u lose')
+        show("u lose")
+        quit()
 
 
 def health_bar(person):

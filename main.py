@@ -1,13 +1,11 @@
 from start import beginning
-from monsterts import Monsters
-from buttle import fight
-
-mo = Monsters('monster')
+from first_room.room1 import looking, rooms
 
 
 def play_game():
     hero = beginning()
-    fight(hero, mo)
+    looking(hero, rooms)
 
 
-play_game()
+if __name__ == "__main__":
+    play_game()

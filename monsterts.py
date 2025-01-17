@@ -4,14 +4,24 @@ from utils import show
 
 
 class Monsters:
-    def __init__(self, name: str):
+    def __init__(
+        self,
+        name: str,
+        power: int,
+        health: int,
+        xp: int = 0,
+        ultimate: str | None = None,
+        ultimate_attack: int | None = None,
+    ):
         self.name = name
-        self.health = 100
-        self.full_health = 100
-        self.power = 8
+        self.health = health
+        self.full_health = health
+        self.power = power
         self.armor = None
         self.stamina = None
-        self.xp = 20
+        self.xp = xp
+        self.ultimate = ultimate
+        self.ultimate_attack = ultimate_attack
 
     def usual_attack(self, target: Hero):
         if target.armor == "light":
@@ -27,12 +37,10 @@ class Monsters:
             real = 1
         target.health -= real
 
-    def ultimate(self, target: Hero):
-        target.health -= 50
-        show("ULTIMATE")
-
     def attack(self, target: Hero):
-        if random.randint(1, 4) == 4:
-            self.ultimate(target)
-        else:
-            self.usual_attack(target)
+        if self.ultimate:
+            if random.randint(1, 4) == 4:
+                show(self.ultimate)
+                target.health -= self.ultimate_attack
+                return
+        self.usual_attack(target)
