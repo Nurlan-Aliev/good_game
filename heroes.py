@@ -50,6 +50,9 @@ class Hero:
     def get_full(self):
         self.stamina = self.full_stamina
 
+    def __repr__(self):
+        return self.name
+
 
 class Samurai(Hero):
     def __init__(self, name):
