@@ -1,10 +1,10 @@
 from start import beginning
-from first_room.room1 import looking, rooms
+from launch_game import start_room, navigate_rooms
 
 
 def play_game():
     hero = beginning()
-    looking(hero, rooms)
+    navigate_rooms(hero, start_room)
 
 
 if __name__ == "__main__":

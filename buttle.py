@@ -1,4 +1,4 @@
-from monsterts import Monsters
+from NPC import Monsters
 from utils import show, hear
 
 
