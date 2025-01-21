@@ -44,3 +44,6 @@ class Monsters:
                 target.health -= self.ultimate_attack
                 return
         self.usual_attack(target)
+
+    def __repr__(self):
+        return self.name
