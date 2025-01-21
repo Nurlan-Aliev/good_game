@@ -1,5 +1,5 @@
 from src.game import heroes
-from utils import show, hear
+from src.utils import show, hear
 from src.script import scenario
 
 

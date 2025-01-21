@@ -1,5 +1,5 @@
 from NPC import Monsters
-from utils import show, hear
+from src.utils import show, hear
 
 
 def fight(hero, enemy: Monsters):

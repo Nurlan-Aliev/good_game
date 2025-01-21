@@ -1,6 +1,6 @@
 from src.game.heroes import Hero
 import random
-from utils import show
+from src.utils import show
 
 
 class Monsters:

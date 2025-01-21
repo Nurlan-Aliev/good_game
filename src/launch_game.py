@@ -1,4 +1,4 @@
-from utils import hear, show
+from src.utils import hear, show
 from src.game.buttle import fight
 from src.game.NPC import Monsters
 from src.game.room.room_class import Room
