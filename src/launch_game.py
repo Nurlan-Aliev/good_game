@@ -1,8 +1,8 @@
 from utils import hear, show
-from buttle import fight
-from NPC import Monsters
-from room_class import Room
-from heroes import Hero
+from src.game.buttle import fight
+from src.game.NPC import Monsters
+from src.game.room.room_class import Room
+from src.game.heroes import Hero
 
 
 def show_room_options(room: Room) -> str:

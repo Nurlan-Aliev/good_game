@@ -1,4 +1,4 @@
-from heroes import Hero
+from src.game.heroes import Hero
 import random
 from utils import show
 

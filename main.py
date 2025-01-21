@@ -1,6 +1,6 @@
-from start import beginning
-from launch_game import navigate_rooms
-from rooms import start_room
+from src.start import beginning
+from src.launch_game import navigate_rooms
+from src.game.room.rooms import start_room
 
 
 def play_game():

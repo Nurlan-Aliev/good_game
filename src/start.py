@@ -1,6 +1,6 @@
-import heroes
+from src.game import heroes
 from utils import show, hear
-from script import scenario
+from src.script import scenario
 
 
 def beginning():
