@@ -1,3 +1,6 @@
+from src.utils import show
+
+
 class Room:
     def __init__(self, name: str, creature, previous_room):
         self.name = name
@@ -8,6 +11,10 @@ class Room:
     def add_next_room(self, room):
         if isinstance(room, Room):
             self.next_rooms[room.name] = room
+
+    def add_rooms(self, *args):
+        for room in args:
+            self.add_next_room(room)
 
     def __repr__(self):
         return self.name
