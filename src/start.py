@@ -1,12 +1,11 @@
 from src.game import heroes
 from src.utils import show, hear
-from src.script import scenario
 
 
 def beginning():
-    show(scenario.preface)
+
     name = hear("What should we call you hero? ")
-    hero = hear("what is your hero?\n1.mage\n2.samurai\n3.warrior ").lower().strip()
+    hero = hear("what is your hero?\n1. Mage\n2. Samurai\n3. Warrior ").lower().strip()
     while hero not in ("mage", "1", "samurai", "2", "warrior", "3"):
         show("you have to chose from the list")
         hero = hear("what is your hero?\n1.mage\n2.samurai\n3.warrior ").lower().strip()
