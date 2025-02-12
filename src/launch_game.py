@@ -1,6 +1,6 @@
 from src.utils import hear, show
 from src.game.buttle import fight
-from src.game.NPC import Monsters
+from src.game.NPC import Monsters, NPC
 from src.game.room.room_class import Room
 from src.game.heroes import Hero
 
@@ -16,7 +16,7 @@ def show_room_options(room: Room) -> str:
     while (choice := hear(message)) not in list(
         room.next_rooms.keys()
     ) and choice not in ("info", "back"):
-        hear("Pls take one from list")
+        show("Pls take one from list")
 
     return choice
 
@@ -27,18 +27,15 @@ def handle_choice(hero: Hero, rooms: Room, choice: str) -> Room:
         return rooms
     elif choice == "back":
         room = rooms.previous_room
-        if isinstance(room, Room):
-            show(room)
-            return room
-        else:
-            show("You are in the first room")
+        return room
     elif choice in rooms.next_rooms.keys():
         room = rooms.next_rooms[choice]
         if isinstance(room.creature, Monsters):
             fight(hero, room.creature)
             room.creature = "just a room"
-        elif isinstance(room.creature, str):
-            show(room.creature)
+        elif isinstance(room.creature, NPC):
+            show(room.creature.get_story())
+            show(room.creature.get_quest())
         else:
             show("The room is empty.")
         return room
