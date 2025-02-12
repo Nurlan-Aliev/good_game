@@ -2,8 +2,8 @@ from src.utils import show
 
 
 class Hero:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, name:str):
+        self.name = name.title()
         self.health = 100
         self.full_health = 100
         self.power = 8
@@ -15,11 +15,11 @@ class Hero:
         self.level = 1
 
     def info(self):
-        show(f"\nИмя героя: {self.name}")
-        show(f"Здоровье: {self.health}")
-        show(f"Урон: {self.power}")
-        show(f"level: {self.level}")
-        show(f"xp: {self.xp}")
+        show(f"\nHero's name: {self.name}"
+             f"\nHealth: {self.health}"
+             f"\nDamage: {self.power}"
+             f"\nlevel: {self.level}"
+             f"\nxp: {self.xp}", style='green')
 
     def attack(self, target):
         if target.armor == "light":
@@ -37,9 +37,9 @@ class Hero:
 
     def lvl_up(self, lvl: int):
         self.level += lvl
-        self.full_health += 10
+        self.full_health += 10 * lvl
         self.health = self.full_health
-        show(f"\n{'<'*30} LEVEL UP {'>'*30}\n")
+        show(f"\n{'<'*30} LEVEL UP {'>'*30}\n", style='rgb(215,170,100)')
 
     def get_xp(self, xp: int):
         self.xp += xp
@@ -47,60 +47,8 @@ class Hero:
             lvl = (self.xp // 100) - (self.level - 1)
             self.lvl_up(lvl)
 
-    def get_full(self):
-        self.stamina = self.full_stamina
-
     def __repr__(self):
         return self.name
-
-
-class Samurai(Hero):
-    def __init__(self, name):
-        super().__init__(name)
-        self.stamina = 150
-        self.full_stamina = 150
-        self.armor = "light"
-
-    def ultimate(self, target):
-        how_many = 60
-        if self.stamina > how_many:
-            show("\nこんにちは\n")
-            target.health -= 20
-            self.stamina -= how_many
-        else:
-            self.attack(target)
-
-    def info(self):
-        super().info()
-        show(f"Выносливость: {self.stamina}\n")
-
-
-class Mage(Hero):
-    def __init__(self, name):
-        super().__init__(name)
-        self.mana = 120
-        self.full_mana = 120
-
-    def ultimate(self, target):
-        how_many = 30
-        if self.mana > how_many:
-            show("\nFIREBALL!!!\n")
-            target.health -= 30
-            self.mana -= how_many
-        else:
-            self.attack(target)
-
-    def info(self):
-        super().info()
-        show(f"Мана: {self.mana}\n")
-
-    def get_full(self):
-        self.mana = self.full_mana
-
-    def lvl_up(self, lvl: int):
-        super().lvl_up(lvl)
-        self.full_mana += 10
-        self.mana = self.full_mana
 
 
 class Warrior(Hero):
@@ -112,12 +60,60 @@ class Warrior(Hero):
     def ultimate(self, target):
         how_many = 30
         if self.stamina > how_many:
-            show("\nFOR HONOR AND COURAGE\n")
             target.health -= 20
             self.stamina -= how_many
+            return "\nFOR HONOR AND COURAGE\n"
         else:
             self.attack(target)
 
     def info(self):
         super().info()
-        show(f"Выносливость: {self.stamina}\n")
+        show(f"Stamina: {self.stamina}\n", style='green')
+
+    def get_full(self):
+        self.stamina = self.full_stamina
+
+
+class Samurai(Warrior):
+    def __init__(self, name):
+        super().__init__(name)
+        self.stamina = 150
+        self.full_stamina = 150
+        self.armor = "light"
+
+    def ultimate(self, target):
+        how_many = 60
+        if self.stamina > how_many:
+            target.health -= 20
+            self.stamina -= how_many
+            return "\nこんにちは\n"
+        else:
+            self.attack(target)
+
+
+class Mage(Hero):
+    def __init__(self, name):
+        super().__init__(name)
+        self.mana = 120
+        self.full_mana = 120
+
+    def ultimate(self, target):
+        how_many = 30
+        if self.mana > how_many:
+            target.health -= 30
+            self.mana -= how_many
+            return "\nFIREBALL!!!\n"
+        else:
+            self.attack(target)
+
+    def info(self):
+        super().info()
+        show(f"mana: {self.mana}\n", style='green')
+
+    def get_full(self):
+        self.mana = self.full_mana
+
+    def lvl_up(self, lvl: int):
+        super().lvl_up(lvl)
+        self.full_mana += 10
+        self.mana = self.full_mana
