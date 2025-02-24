@@ -1,6 +1,6 @@
 from src.game.heroes import Hero
 import random
-from src.utils import hear
+from src.utils import input_data
 import hashlib
 
 
@@ -61,7 +61,7 @@ class NPC:
         return self.story
 
     def get_quest(self):
-        answer = hashlib.sha256(hear(self.quest["question"]).encode()).hexdigest()
+        answer = hashlib.sha256(input_data(self.quest["question"]).encode()).hexdigest()
         if answer == self.quest["answer"]:
             return self.correct
         else:

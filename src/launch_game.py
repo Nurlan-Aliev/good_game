@@ -1,4 +1,4 @@
-from src.utils import hear, show
+from src.utils import input_data, show
 from src.game.buttle import fight
 from src.game.NPC import Monsters, NPC
 from src.game.room.room_class import Room
@@ -13,7 +13,7 @@ def show_room_options(room: Room) -> str:
         f'{'\nback (go back)' if room.previous_room else ''}'
     )
 
-    while (choice := hear(message)) not in list(
+    while (choice := input_data(message)) not in list(
         room.next_rooms.keys()
     ) and choice not in ("info", "back"):
         show("Pls take one from list")
