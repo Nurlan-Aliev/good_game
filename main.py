@@ -8,6 +8,7 @@ from src.utils import show
 def play_game():
     # show(scenario.preface, style="green")
     hero = beginning()
+    show(hero.info(), style='green')
     navigate_rooms(hero, start_room)
 
 

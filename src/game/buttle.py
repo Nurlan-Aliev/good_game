@@ -10,7 +10,7 @@ def fight(hero, enemy: Monsters):
         if kick in ["2", "ultimate"]:
             show(hero.ultimate(enemy), style='green')
         else:
-            hero.attack(enemy)
+            show(hero.attack(enemy), style='red')
         if enemy.health <= 0:
             hero.get_xp(enemy.xp)
             hero.get_full()

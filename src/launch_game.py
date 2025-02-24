@@ -27,7 +27,10 @@ def handle_choice(hero: Hero, rooms: Room, choice: str) -> Room:
         return rooms
     elif choice == "back":
         room = rooms.previous_room
-        return room
+        if room:
+            return room
+        show('u are in the first room')
+        return rooms
     elif choice in rooms.next_rooms.keys():
         room = rooms.next_rooms[choice]
         if isinstance(room.creature, Monsters):

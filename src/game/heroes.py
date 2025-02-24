@@ -15,11 +15,11 @@ class Hero:
         self.level = 1
 
     def info(self):
-        show(f"\nHero's name: {self.name}"
-             f"\nHealth: {self.health}"
-             f"\nDamage: {self.power}"
-             f"\nlevel: {self.level}"
-             f"\nxp: {self.xp}", style='green')
+        return(f"\nHero's name: {self.name}"
+               f"\nHealth: {self.health}"
+               f"\nDamage: {self.power}"
+               f"\nlevel: {self.level}"
+               f"\nxp: {self.xp}")
 
     def attack(self, target):
         if target.armor == "light":
@@ -67,8 +67,7 @@ class Warrior(Hero):
             self.attack(target)
 
     def info(self):
-        super().info()
-        show(f"Stamina: {self.stamina}\n", style='green')
+        return super().info()+f"\nStamina: {self.stamina}\n"
 
     def get_full(self):
         self.stamina = self.full_stamina
@@ -107,8 +106,7 @@ class Mage(Hero):
             self.attack(target)
 
     def info(self):
-        super().info()
-        show(f"mana: {self.mana}\n", style='green')
+        return super().info()+f"\nmana: {self.mana}\n"
 
     def get_full(self):
         self.mana = self.full_mana

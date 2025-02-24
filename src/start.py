@@ -15,7 +15,4 @@ def beginning():
         my_hero = heroes.Samurai(name)
     elif hero in ("warrior", "3"):
         my_hero = heroes.Warrior(name)
-
-    my_hero.info()
-    show(f"Go {my_hero.name}, mighty hero!")
     return my_hero

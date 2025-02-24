@@ -1,6 +1,6 @@
 from src.game.heroes import Hero
 import random
-from src.utils import show, hear
+from src.utils import hear
 import hashlib
 
 
@@ -41,9 +41,8 @@ class Monsters:
     def attack(self, target: Hero):
         if self.ultimate:
             if random.randint(1, 4) == 4:
-                show(self.ultimate.upper(), style='red')
                 target.health -= self.ultimate_attack
-                return
+                return self.ultimate.upper()
         self.usual_attack(target)
 
     def __repr__(self):

@@ -1,6 +1,3 @@
-from src.utils import show
-
-
 class Room:
     def __init__(self, name: str, creature, previous_room):
         self.name = name
