@@ -2,24 +2,29 @@ from src.utils import show
 
 
 class Hero:
-    def __init__(self, name:str):
+    def __init__(self, name: str):
         self.name = name.title()
         self.health = 100
         self.full_health = 100
         self.power = 8
         self.space_basket = 20
         self.armor = None
-        self.full_stamina = None
-        self.stamina = None
+        self.stamina = 0
+        self.mana = 0
         self.xp = 0
         self.level = 1
 
     def info(self):
-        return(f"\nHero's name: {self.name}"
-               f"\nHealth: {self.health}"
-               f"\nDamage: {self.power}"
-               f"\nlevel: {self.level}"
-               f"\nxp: {self.xp}")
+        return (
+            f"\nHero's name: {self.name}"
+            f"\nHealth: {self.health}"
+            f"\nDamage: {self.power}"
+            f"\nlevel: {self.level}"
+            f"\nxp: {self.xp}"
+        )
+
+    def ultimate(self, target):
+        pass
 
     def attack(self, target):
         if target.armor == "light":
@@ -39,7 +44,7 @@ class Hero:
         self.level += lvl
         self.full_health += 10 * lvl
         self.health = self.full_health
-        show(f"\n{'<'*30} LEVEL UP {'>'*30}\n", style='rgb(215,170,100)')
+        show(f"\n{'<'*30} LEVEL UP {'>'*30}\n", style="rgb(215,170,100)")
 
     def get_xp(self, xp: int):
         self.xp += xp
@@ -67,7 +72,7 @@ class Warrior(Hero):
             self.attack(target)
 
     def info(self):
-        return super().info()+f"\nStamina: {self.stamina}\n"
+        return super().info() + f"\nStamina: {self.stamina}\n"
 
     def get_full(self):
         self.stamina = self.full_stamina
@@ -106,7 +111,7 @@ class Mage(Hero):
             self.attack(target)
 
     def info(self):
-        return super().info()+f"\nmana: {self.mana}\n"
+        return super().info() + f"\nmana: {self.mana}\n"
 
     def get_full(self):
         self.mana = self.full_mana

@@ -1,7 +1,5 @@
 from src.game.heroes import Hero
 import random
-from src.utils import input_data
-import hashlib
 
 
 class Monsters:
@@ -23,6 +21,10 @@ class Monsters:
         self.xp = xp
         self.ultimate = ultimate
         self.ultimate_attack = ultimate_attack
+        self.alife = True
+
+    def set_alife(self):
+        self.alife = False
 
     def usual_attack(self, target: Hero):
         if target.armor == "light":
@@ -47,22 +49,3 @@ class Monsters:
 
     def __repr__(self):
         return self.name
-
-
-class NPC:
-    def __init__(self, name: str, story: str, quest: dict):
-        self.name = name
-        self.story = story
-        self.quest = quest
-        self.correct = "you are right my boy"
-        self.wrong = "no no no you must be know it"
-
-    def get_story(self):
-        return self.story
-
-    def get_quest(self):
-        answer = hashlib.sha256(input_data(self.quest["question"]).encode()).hexdigest()
-        if answer == self.quest["answer"]:
-            return self.correct
-        else:
-            return self.wrong

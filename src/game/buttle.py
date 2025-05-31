@@ -1,19 +1,26 @@
-from src.game.NPC import Monsters
-from src.utils import show, input_data,
+from src.game.heroes import Hero
+from src.game.npc.monster_class import Monsters
+from src.utils import show, option
 
 
-def fight(hero, enemy: Monsters):
+def fight(hero: Hero, enemy: Monsters):
     while hero.health > 0:
-        show(health_bar(hero), style='green', second=0.01)
-        show(health_bar(enemy),style='red', second=0.01)
-        kick: str = input_data("how do you want to attack\n1. usual attack\n2. ultimate")
-        if kick in ["2", "ultimate"]:
-            show(hero.ultimate(enemy), style='green')
+        show(health_bar(hero), style="green", second=0.01)
+        show(health_bar(enemy), style="red", second=0.01)
+        choices = (
+            ["usual attack", "ultimate"]
+            if hero.stamina > 50 or hero.mana > 50
+            else ["usual attack"]
+        )
+        kick: str = option("how do you want to attack", choices)
+        if kick == "ultimate":
+            show(hero.ultimate(enemy), style="green")
         else:
-            show(hero.attack(enemy), style='red')
+            show(hero.attack(enemy), style="green")
+
         if enemy.health <= 0:
             hero.get_xp(enemy.xp)
-            hero.get_full()
+            enemy.set_alife()
             show("u win")
             break
         enemy.attack(hero)
