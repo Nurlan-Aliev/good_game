@@ -1,9 +1,9 @@
-from src.game.npc.monster_class import Monsters
+from src.game.entities.monster_class import Monsters
 from src.utils import show, option
 from src.game.buttle import fight
 from src.game.npc.NPC import NPC
 from src.game.room.room_class import Room
-from src.game.heroes import Hero
+from src.game.entities.heroes import Hero
 
 
 def show_room_options(room: Room) -> str:

@@ -1,5 +1,5 @@
-from src.game.heroes import Hero
-from src.game.npc.monster_class import Monsters
+from src.game.entities.heroes import Hero
+from src.game.entities.monster_class import Monsters
 from src.utils import show, option
 
 

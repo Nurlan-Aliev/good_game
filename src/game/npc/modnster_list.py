@@ -1,4 +1,4 @@
-from src.game.npc.monster_class import Monsters
+from src.game.entities.monster_class import Monsters
 
 monsters = {
     "Mouse": Monsters("Mouse", 8, 25, 55),

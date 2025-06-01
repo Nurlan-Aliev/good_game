@@ -1,5 +1,5 @@
-from src.game import heroes
-from src.utils import show, input_data, option
+from src.game.entities import heroes
+from src.utils import input_data, option
 
 
 def beginning():
