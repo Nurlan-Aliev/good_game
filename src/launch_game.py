@@ -1,9 +1,8 @@
-from src.game.entities.monster_class import Monsters
+from src.game.classes.monster import Monsters
 from src.utils import show, option
-from src.game.buttle import fight
-from src.game.npc.NPC import NPC
+from src.game.classes.NPC import NPC
 from src.game.room.room_class import Room
-from src.game.entities.heroes import Hero
+from src.game.classes.heroes import Hero
 
 
 def show_room_options(room: Room) -> str:
@@ -21,7 +20,7 @@ def npc_in_room():
 
 
 def talk_npc(hero, creature: NPC):
-    show(creature.get_quest())
+    show(creature.quest())
 
     message = "Will you did it?"
     choices = ["yes", "i still did it"]
@@ -29,7 +28,7 @@ def talk_npc(hero, creature: NPC):
     if choice == "yes":
         show("I'll wait for you here")
     else:
-        if creature.set_guest():
+        if creature.status():
             hero.get_xp(creature.xp)
             show("thank you")
         else:
@@ -38,7 +37,7 @@ def talk_npc(hero, creature: NPC):
 
 def handle_choice(hero: Hero, rooms: Room, choice: str) -> Room:
     if choice == "info":
-        show(hero.info())
+        show(hero)
         return rooms
     elif choice == "back":
         room = rooms.previous_room
@@ -49,7 +48,7 @@ def handle_choice(hero: Hero, rooms: Room, choice: str) -> Room:
     elif choice in rooms.next_rooms.keys():
         room = rooms.next_rooms[choice]
         if isinstance(room.creature, Monsters):
-            fight(hero, room.creature)
+            hero.fight(room.creature)
             room.creature = "just a room"
         elif isinstance(room.creature, NPC):
             choice = npc_in_room()

@@ -1,5 +1,6 @@
-from src.utils import show
-from src.game.entities.base import Character
+from src.game.classes.monster import Monsters
+from src.utils import show, option
+from src.game.classes.base import Character
 from abc import ABC, abstractmethod
 
 
@@ -16,9 +17,8 @@ class Hero(Character, ABC):
 
     @xp.setter
     def xp(self, value):
-        if value < 0:
-            self._xp += 0
-        self._xp += value
+        if value > self._xp:
+            self._xp = value
         self.check_level_up()
 
     def check_level_up(self):
@@ -46,6 +46,33 @@ class Hero(Character, ABC):
             f"xp: {self.xp}\n"
         )
 
+    def __iter__(self):
+        yield f"\nHero's name: {self.name}\n"
+        yield f"Health: {self.health}\n"
+        yield f"Damage: {self.power}\n"
+        yield f"level: {self.level}\n"
+        yield f"xp: {self.xp}\n"
+
+    def fight(self, enemy: Monsters):
+        choices = {"usual attack": self.attack, "ultimate": self.ultimate}
+
+        while self.alife:
+            show(self.health_bar(), style="green", second=0.01)
+            show(enemy.health_bar(), style="red", second=0.01)
+
+            kick: str = option("how do you want to attack", choices.keys())
+
+            show(choices[kick](enemy), style="green")
+
+            if not enemy.alife:
+                self.xp += enemy.exp_reward
+                show("u win")
+                break
+            enemy.attack(self)
+        else:
+            show("u lose")
+            quit()
+
 
 class Warrior(Hero):
     def __init__(self, name):
@@ -70,6 +97,10 @@ class Warrior(Hero):
     def __str__(self):
         return super().__str__() + f"Stamina: {self._stamina}\n"
 
+    def __iter__(self):
+        yield from super().__iter__()
+        yield f"Stamina: {self._stamina}\n"
+
 
 class Samurai(Hero):
     def __init__(self, name):
@@ -88,6 +119,10 @@ class Samurai(Hero):
 
     def __str__(self):
         return super().__str__() + f"Stamina: {self._stamina}\n"
+
+    def __iter__(self):
+        yield from super().__iter__()
+        yield f"Stamina: {self._stamina}\n"
 
 
 class Mage(Hero):
@@ -112,3 +147,7 @@ class Mage(Hero):
 
     def __str__(self):
         return super().__str__() + f"Mana: {self._mana}\n"
+
+    def __iter__(self):
+        yield from super().__iter__()
+        yield f"Mana: {self._mana}\n"

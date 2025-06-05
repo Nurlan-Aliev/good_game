@@ -2,11 +2,13 @@ from time import sleep
 from rich.console import Console
 import questionary
 from prompt_toolkit.styles import Style
+from typing import Iterable
+
 
 console = Console()
 
 
-def show(info: str, style: str = "", second: float = 0.05):
+def show(info: any, style: str = "", second: float = 0.05):
     if info:
         for latter in info:
             console.print(latter, end="", style=style)
@@ -19,7 +21,7 @@ def input_data(info: str, style=""):
     return console.input("-> ")
 
 
-def option(message: str, options: list):
+def option(message: str, options: Iterable):
 
     custom_style = Style(
         [

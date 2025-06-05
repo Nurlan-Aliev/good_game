@@ -1,4 +1,4 @@
-from src.game.entities import heroes
+from src.game.classes import heroes
 from src.utils import input_data, option
 
 

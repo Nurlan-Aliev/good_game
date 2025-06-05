@@ -1,5 +1,5 @@
 import random
-from src.game.entities.base import Character
+from src.game.classes.base import Character
 
 
 class Monsters(Character):
@@ -12,10 +12,6 @@ class Monsters(Character):
     ):
         super().__init__(name, health, power)
         self.exp_reward = exp_reward
-        self.alife = True
-
-    def set_alife(self):
-        self.alife = False
 
     def __str__(self):
         return self.name
