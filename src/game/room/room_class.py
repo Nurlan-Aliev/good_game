@@ -13,5 +13,5 @@ class Room:
         for room in args:
             self.add_next_room(room)
 
-    def __repr__(self):
+    def __str__(self):
         return self.name
