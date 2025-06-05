@@ -19,34 +19,42 @@ def npc_in_room():
     return choice
 
 
-def talk_npc(hero, creature: NPC):
-    show(creature.quest())
+def talk_npc(hero: Hero, creature: NPC):
+    show(creature.quest)
 
     message = "Will you did it?"
-    choices = ["yes", "i still did it"]
+    choices = ["yes", "i still did it", "No"]
     choice = option(message, choices)
     if choice == "yes":
         show("I'll wait for you here")
-    else:
-        if creature.status():
-            hero.get_xp(creature.xp)
+
+    elif choice == "i still did it":
+        if creature.status:
+            hero.health += creature.xp
             show("thank you")
         else:
             show("Liar")
+    else:
+        show("oh noo")
 
 
 def handle_choice(hero: Hero, rooms: Room, choice: str) -> Room:
     if choice == "info":
         show(hero)
         return rooms
+
     elif choice == "back":
-        room = rooms.previous_room
-        if room:
-            return room
+
+        if rooms.previous_room:
+            return rooms.previous_room
+
         show("u are in the first room")
         return rooms
+
     elif choice in rooms.next_rooms.keys():
+
         room = rooms.next_rooms[choice]
+
         if isinstance(room.creature, Monsters):
             hero.fight(room.creature)
             room.creature = "just a room"
