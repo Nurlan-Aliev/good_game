@@ -1,17 +1,13 @@
 class Room:
-    def __init__(self, name: str, creature, previous_room):
+    def __init__(self, name: str, creature):
         self.name = name
         self.creature = creature
-        self.next_rooms: dict[str:Room] = {}
-        self.previous_room = previous_room
-
-    def add_next_room(self, room):
-        if isinstance(room, Room):
-            self.next_rooms[room.name] = room
+        self.next_rooms: dict[str, Room] = {}
 
     def add_rooms(self, *args):
-        for room in args:
-            self.add_next_room(room)
+        self.next_rooms.update(
+            {room.name: room for room in args if isinstance(room, Room)}
+        )
 
     def __str__(self):
         return self.name

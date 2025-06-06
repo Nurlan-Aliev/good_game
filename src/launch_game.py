@@ -7,7 +7,7 @@ from src.game.classes.heroes import Hero
 
 def show_room_options(room: Room) -> str:
     message = "what do you want?"
-    choices = ["info", *room.next_rooms.keys(), "back"]
+    choices = ["info", *room.next_rooms.keys()]
     choice = option(message, choices)
     return choice
 
@@ -41,14 +41,6 @@ def talk_npc(hero: Hero, creature: NPC):
 def handle_choice(hero: Hero, rooms: Room, choice: str) -> Room:
     if choice == "info":
         show(hero)
-        return rooms
-
-    elif choice == "back":
-
-        if rooms.previous_room:
-            return rooms.previous_room
-
-        show("u are in the first rooms")
         return rooms
 
     elif choice in rooms.next_rooms.keys():
