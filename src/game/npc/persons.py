@@ -6,7 +6,7 @@ npc_list = {
     "Groter": NPC(
         "Groter",
         "Mouses kill my daughter pleas find their father and kill him",
-        monsters["Mouse"],
+        monsters["Big mouse"],
         30,
         1000,
         1000,

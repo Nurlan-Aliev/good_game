@@ -1,7 +1,7 @@
 from src.game.classes.monster import Monsters
 from src.utils import show, option
 from src.game.classes.NPC import NPC
-from src.game.room.room_class import Room
+from src.game.classes.room import Room
 from src.game.classes.heroes import Hero
 
 
@@ -48,7 +48,7 @@ def handle_choice(hero: Hero, rooms: Room, choice: str) -> Room:
         if rooms.previous_room:
             return rooms.previous_room
 
-        show("u are in the first room")
+        show("u are in the first rooms")
         return rooms
 
     elif choice in rooms.next_rooms.keys():
@@ -57,13 +57,13 @@ def handle_choice(hero: Hero, rooms: Room, choice: str) -> Room:
 
         if isinstance(room.creature, Monsters):
             hero.fight(room.creature)
-            room.creature = "just a room"
+            room.creature = "just a rooms"
         elif isinstance(room.creature, NPC):
             choice = npc_in_room()
             if choice == "talk":
                 talk_npc(hero, room.creature)
         else:
-            show("The room is empty.")
+            show("The rooms is empty.")
         return room
 
 

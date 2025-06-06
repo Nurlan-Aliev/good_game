@@ -1,7 +1,7 @@
 from src.script import scenario
 from src.start import beginning
 from src.launch_game import navigate_rooms
-from src.game.room.rooms import start_room
+from src.game.rooms.rooms import start_room
 from src.utils import show
 
 

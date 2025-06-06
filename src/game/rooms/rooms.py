@@ -1,5 +1,5 @@
 from src.game.npc.modnster_list import monsters
-from src.game.room.room_class import Room
+from src.game.classes.room import Room
 from src.game.npc.persons import npc_list
 
 start_room = Room("start_room", None, None)
