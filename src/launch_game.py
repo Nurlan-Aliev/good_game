@@ -43,20 +43,19 @@ def handle_choice(hero: Hero, rooms: Room, choice: str) -> Room:
         show(hero)
         return rooms
 
-    elif choice in rooms.next_rooms.keys():
+    room = rooms.change_room(choice)
 
-        room = rooms.next_rooms[choice]
+    if isinstance(room.creature, Monsters):
+        hero.fight(room.creature)
+        room.creature = None
+    elif isinstance(room.creature, NPC):
+        choice = npc_in_room()
+        if choice == "talk":
+            talk_npc(hero, room.creature)
+    else:
+        show("The rooms is empty.")
 
-        if isinstance(room.creature, Monsters):
-            hero.fight(room.creature)
-            room.creature = "just a rooms"
-        elif isinstance(room.creature, NPC):
-            choice = npc_in_room()
-            if choice == "talk":
-                talk_npc(hero, room.creature)
-        else:
-            show("The rooms is empty.")
-        return room
+    return room
 
 
 def navigate_rooms(hero, rooms):
